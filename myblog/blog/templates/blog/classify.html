@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Main</title>
+    <style type="text/css">
+        .dropdown-icon{
+            color: grey;
+            background: none;
+            border-style: none;
+        }
+    </style>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="btn-group">
+      <button type="button" class="btn btn-Secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Category
+      </button>
+      <div class="dropdown-menu">
+          <a class="dropdown-item" href="/myblog/main">All</a>
+          <a class="dropdown-item" href="/myblog/classify/English">English</a>
+          <a class="dropdown-item" href="/myblog/classify/Chinese">中文</a>
+          <a class="dropdown-item" href="/myblog/classify/Korean">한글</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/myblog/classify/Others">Others</a>
+      </div>
+    </div>
+    <button type="button" class="btn btn-success">
+        <a href="/myblog/sign_up/">Sign Up</a>
+    </button>
+    <button type="button" class="btn btn-light">
+        <a href="/myblog/sign_in/">Sign In</a>
+    </button>
+    {% if request.user.is_authenticated %}
+        <button type="button" class="btn btn-light">
+            <a href="/myblog/logout/">Logout</a>
+        </button>
+    {% endif %}
+    <h1> List / {{ username }}</h1>
+    <h3>
+        {% for article in Articles %}
+        <a href="/myblog/article_page/{{ article.id }}">{{ article.title }}</a></br>
+        {% endfor %}
+    </h3>
+    {% if request.user.is_authenticated %}
+        <h2>
+            <a href="/myblog/edit_page/0">[Write]</a>
+        </h2>
+    {% endif %}
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
