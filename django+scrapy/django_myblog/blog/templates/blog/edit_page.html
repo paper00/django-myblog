@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <title> Modify </title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
+    <script type="text/javascript" src="/admin/jsi18n/"></script>
+    <link href="/static/mdeditor/css/editormd.css" type="text/css" media="all" rel="stylesheet">
+    <script type="text/javascript" src="/static/admin/js/vendor/jquery/jquery.js"></script>
+    <script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+    <script type="text/javascript" src="/static/admin/js/core.js"></script>
+    <script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+    <script type="text/javascript" src="/static/admin/js/actions.js"></script>
+    <script type="text/javascript" src="/static/admin/js/urlify.js"></script>
+    <script type="text/javascript" src="/static/admin/js/prepopulate.js"></script>
+    <script type="text/javascript" src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
+    <script type="text/javascript" src="/static/mdeditor/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/mdeditor/js/editormd.min.js"></script>
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css">
+    <meta name="robots" content="NONE,NOARCHIVE">
+</head>
+<body>
+    <form action="/myblog/edit_action/" method="post">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form.as_p }}
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default"> Title </span>
+          </div>
+          <input type="text" class="form-control" id="title01" name="title" value="{{ Article.title }}" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+        </div>
+        <div class="input-group">
+          <select class="custom-select" id="inputGroupSelect04" name="category">
+            <<option selected value="Others">Category</option>
+              <option value="English">English</option>
+              <option value="Chinese">中文</option>
+              <option value="Korean">한글</option>
+          </select>
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit">Submit</button>
+          </div>
+        </div>
+        <input type="hidden" name="id" value="{{ Article.id | default:'0'}}">
+        <div class="wmd-wrapper" id="id_content-wmd-wrapper">
+            <textarea cols="40" id="id_content" name="contentt" rows="10" required> {{Article.content}} </textarea>
+        </div>
+    </form>
+
+    <script type="text/javascript"
+                id="django-admin-form-add-constants"
+                src="/static/admin/js/change_form.js"
+                >
+        </script>
+    <style type="text/css">
+        .wmd-wrapper  ul {
+            margin-left: 0px !important;
+        }
+        .wmd-wrapper ul li{
+            list-style: disc !important;
+        }
+        .wmd-wrapper ul ul li{
+            list-style: circle !important;
+        }
+        .wmd-wrapper h1,h2,h3,h4,h5,h6 {
+            background: #ffffff !important;
+            color: #000000 !important;
+        }
+        .wmd-wrapper h2,h3,h4{
+            padding: 0px !important;
+        }
+        .wmd-wrapper h5{
+            letter-spacing: 0px !important;
+            text-transform: none !important;
+            font-size: 1em !important;
+        }
+        .wmd-wrapper h6{
+            font-size: 1em !important;
+            color: #777 !important;
+        }
+    </style>
+
+    <!--&lt;!&ndash;Content Editor&ndash;&gt;-->
+    <!--<div class="wmd-wrapper" id="id_content-wmd-wrapper"><textarea cols="40" id="id_content" name="content" rows="10" required>{{ Article.content }}</textarea></div>-->
+
+    <script type="text/javascript">
+        var MarkDownEditor;
+
+        $(function () {
+            MarkDownEditor = editormd("id_content-wmd-wrapper", {
+                width: "90%",
+                height: 500,
+                onfullscreen : function() {
+                    this.editor.css("border-radius", 0).css("z-index", 120);
+                },
+                onfullscreenExit : function() {
+                    this.editor.css({
+                        zIndex : 10,
+                        border : "none",
+                        "border-radius" : "5px"
+                    })
+                },
+                syncScrolling: "single",
+                path: "/static/mdeditor/js/lib/",
+                // theme
+                theme : "default",
+                previewTheme : "default",
+                editorTheme : "default",
+
+                saveHTMLToTextarea: true,
+                toolbarAutoFixed: true,
+                searchReplace: true,
+                emoji: true,
+                tex: true,
+                flowChart: true,
+                sequenceDiagram: true,
+
+                // image upload
+                imageUpload: true,
+                imageFormats: ['jpg', 'JPG', 'jpeg', 'JPEG', 'gif', 'GIF', 'png', 'PNG', 'bmp', 'BMP', 'webp', 'WEBP'],
+                imageUploadURL: "/mdeditor/uploads/",
+                toolbarIcons: function () {
+                    return ['undo', 'redo', '|', 'bold', 'del', 'italic', 'quote', 'ucwords', 'uppercase', 'lowercase', '|', 'h1', 'h2', 'h3', 'h5', 'h6', '|', 'list-ul', 'list-ol', 'hr', '|', 'link', 'reference-link', 'image', 'code', 'preformatted-text', 'code-block', 'table', 'datetime', 'emoji', 'html-entities', 'pagebreak', 'goto-line', '|', 'help', 'info', '||', 'preview', 'watch', 'fullscreen']
+                },
+                onload: function () {
+                    console.log('onload', this);
+                    this.fullscreen();
+                    this.unwatch();
+                    this.watch().fullscreen();
+
+                    this.width("100%");
+                    this.height(480);
+                    this.resize("100%", 640);
+                }
+            });
+
+        });
+    </script>
+    <script type="text/javascript"
+            id="django-admin-prepopulated-fields-constants"
+            src="/static/admin/js/prepopulate_init.js"
+            data-prepopulated-fields="[]">
+    </script>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

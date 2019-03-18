@@ -1,0 +1,15 @@
+setup.py
+hfut_user/__init__.py
+hfut_user/chaptcha.py
+hfut_user/items.py
+hfut_user/main.py
+hfut_user/middlewares.py
+hfut_user/pipelines.py
+hfut_user/settings.py
+hfut_user/spiders/__init__.py
+hfut_user/spiders/hfut_user_spider.py
+project.egg-info/PKG-INFO
+project.egg-info/SOURCES.txt
+project.egg-info/dependency_links.txt
+project.egg-info/entry_points.txt
+project.egg-info/top_level.txt

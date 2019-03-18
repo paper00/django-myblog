@@ -1,0 +1,217 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+    <!--<meta charset="UTF-8">-->
+    <!--<title>Article Page Title</title>-->
+    <!--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+<!--</head>-->
+<!--<body>-->
+    <!--<h2>{{ Article.title }} / {{ Article.category }}</h2>-->
+    <!--<h3>{{ Article.author }} / {{ Article.time }}</h3>-->
+    <!--<p>{{ Article.content }}</p>-->
+    <!--{% if state == 1 %}-->
+        <!--<a href="/myblog/edit_page/{{ Article.id }}"> [Edit] </a>-->
+        <!--&lt;!&ndash; Button trigger modal &ndash;&gt;-->
+          <!--<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#delete">-->
+            <!--Delete-->
+          <!--</button>-->
+          <!--&lt;!&ndash; Modal &ndash;&gt;-->
+          <!--<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">-->
+            <!--<div class="modal-dialog modal-dialog-centered" role="document">-->
+              <!--<div class="modal-content">-->
+                <!--<div class="modal-header">-->
+                  <!--<h5 class="modal-title" id="exampleModalLongTitle">Confirm</h5>-->
+                  <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+                    <!--<span aria-hidden="true">&times;</span>-->
+                  <!--</button>-->
+                <!--</div>-->
+                <!--<div class="modal-body">-->
+                  <!--Do you want to delete this article really?-->
+                <!--</div>-->
+                <!--<div class="modal-footer">-->
+                  <!--<button type="button" class="btn btn-secondary" onclick="window.open('/myblog/delete/{{ Article.id }}?next={{ request.path }}')">-->
+                      <!--delete-->
+                  <!--</button>-->
+                  <!--<button type="button" class="btn btn-light" data-dismiss="modal">Close</button>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--<input type="hidden" name="next" value="{{ request.GET.next }}">-->
+    <!--{% endif %}-->
+    <!--<h3>-->
+        <!--<a href="/myblog/main">[Back]</a>-->
+    <!--</h3>-->
+    <!--<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
+    <!--<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>-->
+    <!--<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>-->
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <title> Modify </title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
+    <script type="text/javascript" src="/admin/jsi18n/"></script>
+    <link href="/static/mdeditor/css/editormd.css" type="text/css" media="all" rel="stylesheet">
+    <script type="text/javascript" src="/static/admin/js/vendor/jquery/jquery.js"></script>
+    <script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+    <script type="text/javascript" src="/static/admin/js/core.js"></script>
+    <script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+    <script type="text/javascript" src="/static/admin/js/actions.js"></script>
+    <script type="text/javascript" src="/static/admin/js/urlify.js"></script>
+    <script type="text/javascript" src="/static/admin/js/prepopulate.js"></script>
+    <script type="text/javascript" src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
+    <script type="text/javascript" src="/static/mdeditor/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/mdeditor/js/editormd.min.js"></script>
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css">
+    <meta name="robots" content="NONE,NOARCHIVE">
+</head>
+<body>
+    <h2>{{ Article.title }} / {{ Article.category }}</h2>
+    <h3>{{ Article.author }} / {{ Article.time }}</h3>
+    {% if state == 1 %}
+        <a href="/myblog/edit_page/{{ Article.id }}"> [Edit] </a>
+        <!-- Button trigger modal -->
+          <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#delete">
+            Delete
+          </button>
+          <!-- Modal -->
+          <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Confirm</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  Do you want to delete this article really?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" onclick="window.open('/myblog/delete/{{ Article.id }}?next={{ request.path }}')">
+                      delete
+                  </button>
+                  <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        <input type="hidden" name="next" value="{{ request.GET.next }}">
+    {% endif %}
+    <h3>
+        <a href="/myblog/main">[Back]</a>
+    </h3>
+
+    <!--Content editor-->
+    <div class="wmd-wrapper" id="id_content-wmd-wrapper">
+        <textarea cols="40" id="id_content" name="contentt" rows="10" required> {{Article.content}} </textarea>
+    </div>
+
+    <!--<div class="editormd-preview editormd-preview-theme-default" style="display: block; width: 711.5px; top: 40px; height: 601px;"><div class="markdown-body editormd-preview-container" previewcontainer="true" style="padding: 20px;"><blockquote>-->
+    <!--<p> {{Article.content}} </p>-->
+    <!--</blockquote>-->
+    <!--</div>-->
+
+    <script type="text/javascript"
+                id="django-admin-form-add-constants"
+                src="/static/admin/js/change_form.js"
+                >
+        </script>
+    <style type="text/css">
+        .wmd-wrapper  ul {
+            margin-left: 0px !important;
+        }
+        .wmd-wrapper ul li{
+            list-style: disc !important;
+        }
+        .wmd-wrapper ul ul li{
+            list-style: circle !important;
+        }
+        .wmd-wrapper h1,h2,h3,h4,h5,h6 {
+            background: #ffffff !important;
+            color: #000000 !important;
+        }
+        .wmd-wrapper h2,h3,h4{
+            padding: 0px !important;
+        }
+        .wmd-wrapper h5{
+            letter-spacing: 0px !important;
+            text-transform: none !important;
+            font-size: 1em !important;
+        }
+        .wmd-wrapper h6{
+            font-size: 1em !important;
+            color: #777 !important;
+        }
+    </style>
+
+    <script type="text/javascript">
+        var MarkDownEditor;
+
+        $(function () {
+            MarkDownEditor = editormd("id_content-wmd-wrapper", {
+                width: "90%",
+                height: 500,
+                onfullscreen : function() {
+                    this.editor.css("border-radius", 0).css("z-index", 120);
+                },
+                onfullscreenExit : function() {
+                    this.editor.css({
+                        zIndex : 10,
+                        border : "none",
+                        "border-radius" : "5px"
+                    })
+                },
+                syncScrolling: "single",
+                path: "/static/mdeditor/js/lib/",
+                // theme
+                theme : "default",
+                previewTheme : "default",
+                editorTheme : "default",
+
+                saveHTMLToTextarea: true,
+                toolbarAutoFixed: true,
+                searchReplace: true,
+                emoji: true,
+                tex: true,
+                flowChart: true,
+                sequenceDiagram: true,
+
+                // image upload
+                imageUpload: true,
+                imageFormats: ['jpg', 'JPG', 'jpeg', 'JPEG', 'gif', 'GIF', 'png', 'PNG', 'bmp', 'BMP', 'webp', 'WEBP'],
+                imageUploadURL: "/mdeditor/uploads/",
+                toolbarIcons: function () {
+                    return ['undo', 'redo', '|', 'bold', 'del', 'italic', 'quote', 'ucwords', 'uppercase', 'lowercase', '|', 'h1', 'h2', 'h3', 'h5', 'h6', '|', 'list-ul', 'list-ol', 'hr', '|', 'link', 'reference-link', 'image', 'code', 'preformatted-text', 'code-block', 'table', 'datetime', 'emoji', 'html-entities', 'pagebreak', 'goto-line', '|', 'help', 'info', '||', 'preview', 'watch', 'fullscreen']
+                },
+                onload: function () {
+                    console.log('onload', this);
+                    this.fullscreen();
+                    this.unwatch();
+                    this.watch().fullscreen();
+
+                    this.width("100%");
+                    this.height(480);
+                    this.resize("100%", 640);
+                }
+            });
+
+        });
+    </script>
+    <script type="text/javascript"
+            id="django-admin-prepopulated-fields-constants"
+            src="/static/admin/js/prepopulate_init.js"
+            data-prepopulated-fields="[]">
+    </script>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

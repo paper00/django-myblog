@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html lang="en-us" >
+<head>
+<title>Change article | Django site admin</title>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
+
+
+<script type="text/javascript" src="/admin/jsi18n/"></script>
+<link href="/static/mdeditor/css/editormd.css" type="text/css" media="all" rel="stylesheet">
+<script type="text/javascript" src="/static/admin/js/vendor/jquery/jquery.js"></script>
+<script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+<script type="text/javascript" src="/static/admin/js/core.js"></script>
+<script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+<script type="text/javascript" src="/static/admin/js/actions.js"></script>
+<script type="text/javascript" src="/static/admin/js/urlify.js"></script>
+<script type="text/javascript" src="/static/admin/js/prepopulate.js"></script>
+<script type="text/javascript" src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
+<script type="text/javascript" src="/static/mdeditor/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/mdeditor/js/editormd.min.js"></script>
+
+
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css">
+
+
+<meta name="robots" content="NONE,NOARCHIVE">
+</head>
+
+
+<body class=" app-blog model-article change-form"
+  data-admin-utc-offset="0">
+
+<!-- Container -->
+<div id="container">
+
+
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+
+<h1 id="site-name"><a href="/admin/">Django administration</a></h1>
+
+        </div>
+
+
+        <div id="user-tools">
+
+                Welcome,
+                <strong>paper</strong>.
+
+
+
+                    <a href="/">View site</a> /
+
+
+
+
+
+
+                <a href="/admin/password_change/">Change password</a> /
+
+                <a href="/admin/logout/">Log out</a>
+
+        </div>
+
+
+
+    </div>
+    <!-- END Header -->
+
+<div class="breadcrumbs">
+<a href="/admin/">Home</a>
+&rsaquo; <a href="/admin/blog/">Blog</a>
+&rsaquo; <a href="/admin/blog/article/">Articles</a>
+&rsaquo; better
+</div>
+
+
+
+
+
+
+
+    <!-- Content -->
+    <div id="content" class="colM">
+
+        <h1>Change article</h1>
+        <div id="content-main">
+
+
+  <ul class="object-tools">
+
+
+
+<li>
+
+    <a href="/admin/blog/article/64/history/" class="historylink">History</a>
+</li>
+
+
+
+
+  </ul>
+
+
+<form action="" method="post" id="article_form" novalidate><input type="hidden" name="csrfmiddlewaretoken" value="IZEpZc4EdeaoMZ4rowhXZ5nSfbH4vOQXp798lxrGW5JSWnoUKZASIEGnRvVAvSna">
+<div>
+
+
+
+
+
+
+
+  <fieldset class="module aligned ">
+
+
+
+        <div class="form-row field-title">
+
+
+                <div>
+
+
+                        <label class="required" for="id_title">Title:</label>
+
+                            <input type="text" name="title" value="better" class="vTextField" maxlength="32" required id="id_title">
+
+
+
+                </div>
+
+        </div>
+
+        <div class="form-row field-author">
+
+
+                <div>
+
+
+                        <label class="required" for="id_author">Author:</label>
+
+                            <input type="text" name="author" value="user_13" class="vTextField" maxlength="32" required id="id_author">
+
+
+
+                </div>
+
+        </div>
+
+        <div class="form-row field-category">
+
+
+                <div>
+
+
+                        <label class="required" for="id_category">Category:</label>
+
+                            <input type="text" name="category" value="English" class="vTextField" maxlength="32" required id="id_category">
+
+
+
+                </div>
+
+        </div>
+
+        <div class="form-row field-content">
+
+
+                <div>
+
+
+                        <label class="required" for="id_content">Content:</label>
+
+
+<style type="text/css">
+    .wmd-wrapper  ul {
+        margin-left: 0px !important;
+    }
+    .wmd-wrapper ul li{
+        list-style: disc !important;
+    }
+    .wmd-wrapper ul ul li{
+        list-style: circle !important;
+    }
+    .wmd-wrapper h1,h2,h3,h4,h5,h6 {
+        background: #ffffff !important;
+        color: #000000 !important;
+    }
+    .wmd-wrapper h2,h3,h4{
+        padding: 0px !important;
+    }
+    .wmd-wrapper h5{
+        letter-spacing: 0px !important;
+        text-transform: none !important;
+        font-size: 1em !important;
+    }
+    .wmd-wrapper h6{
+        font-size: 1em !important;
+        color: #777 !important;
+    }
+</style>
+
+<div class="wmd-wrapper"  id="id_content-wmd-wrapper"><textarea  cols="40" id="id_content" name="content" rows="10" required>#now</textarea></div>
+
+<script type="text/javascript">
+    var MarkDownEditor;
+
+    $(function () {
+        MarkDownEditor = editormd("id_content-wmd-wrapper", {
+            width: "90%",
+            height: 500,
+            // 当有多个mdeditor时，全屏后，其他mdeditor仍然显示，解决此问题。
+            onfullscreen : function() {
+                this.editor.css("border-radius", 0).css("z-index", 120);
+            },
+            onfullscreenExit : function() {
+                this.editor.css({
+                    zIndex : 10,
+                    border : "none",
+                    "border-radius" : "5px"
+                })
+            },
+            syncScrolling: "single",
+            path: "/static/mdeditor/js/lib/",
+            // theme
+            theme : "default",
+            previewTheme : "default",
+            editorTheme : "default",
+
+            saveHTMLToTextarea: true, // editor.md 有问题没有测试成功
+            toolbarAutoFixed: true,
+            searchReplace: true,
+            emoji: true,
+            tex: true,
+            flowChart: true,
+            sequenceDiagram: true,
+
+            // image upload
+            imageUpload: true,
+            imageFormats: ['jpg', 'JPG', 'jpeg', 'JPEG', 'gif', 'GIF', 'png', 'PNG', 'bmp', 'BMP', 'webp', 'WEBP'],
+            imageUploadURL: "/mdeditor/uploads/",
+            toolbarIcons: function () {
+                return ['undo', 'redo', '|', 'bold', 'del', 'italic', 'quote', 'ucwords', 'uppercase', 'lowercase', '|', 'h1', 'h2', 'h3', 'h5', 'h6', '|', 'list-ul', 'list-ol', 'hr', '|', 'link', 'reference-link', 'image', 'code', 'preformatted-text', 'code-block', 'table', 'datetime', 'emoji', 'html-entities', 'pagebreak', 'goto-line', '|', 'help', 'info', '||', 'preview', 'watch', 'fullscreen']
+            },
+            onload: function () {
+                console.log('onload', this);
+                //this.fullscreen();
+                //this.unwatch();
+                //this.watch().fullscreen();
+
+                //this.setMarkdown("#PHP");
+                //this.width("100%");
+                //this.height(480);
+                //this.resize("100%", 640);
+            }
+        });
+
+    });
+</script>
+
+
+
+
+                </div>
+
+        </div>
+
+</fieldset>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="submit-row">
+
+<input type="submit" value="Save" class="default" name="_save">
+
+
+    <p class="deletelink-box"><a href="/admin/blog/article/64/delete/" class="deletelink">Delete</a></p>
+
+
+<input type="submit" value="Save and add another" name="_addanother">
+<input type="submit" value="Save and continue editing" name="_continue">
+
+
+</div>
+
+
+
+    <script type="text/javascript"
+            id="django-admin-form-add-constants"
+            src="/static/admin/js/change_form.js"
+            >
+    </script>
+
+
+
+
+<script type="text/javascript"
+        id="django-admin-prepopulated-fields-constants"
+        src="/static/admin/js/prepopulate_init.js"
+        data-prepopulated-fields="[]">
+</script>
+
+
+</div>
+</form></div>
+
+
+        <br class="clear">
+    </div>
+    <!-- END Content -->
+
+    <div id="footer"></div>
+</div>
+<!-- END Container -->
+
+</body>
+</html>
