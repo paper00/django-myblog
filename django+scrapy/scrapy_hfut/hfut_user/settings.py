@@ -9,40 +9,6 @@
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
-# import os
-# import sys
-#
-# # DJANGO INTEGRATION
-#
-# sys.path.append("C:\\Users\\apple\\Desktop\\myblog")
-# # Do not forget the change iCrawler part based on your project name
-# os.environ['DJANGO_SETTINGS_MODULE'] = 'myblog.settings'
-#
-# # This is required only if Django Version > 1.8
-# import django
-# django.setup()
-#
-# # DJANGO INTEGRATION
-
-
-
-
-# import os
-# import django
-# import sys
-#
-# from django.core.wsgi import get_wsgi_application
-#
-# DJANGO_PROJECT_PATH = 'C:\\Users\\apple\\Desktop\\django+scrapy\\django'
-# DJANGO_SETTINGS_MODULE = 'myblog.settings'
-#
-# sys.path.append(DJANGO_PROJECT_PATH)
-# # sys.path.insert(0, DJANGO_PROJECT_PATH)
-# os.environ['DJANGO_SETTINGS_MODULE'] = DJANGO_SETTINGS_MODULE
-# application = get_wsgi_application()
-# django.setup()
-
-
 import sys
 sys.path.append('...')
 
