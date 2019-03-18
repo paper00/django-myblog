@@ -44,7 +44,7 @@
 
 
 import sys
-sys.path.append('C:\\Users\\apple\\Desktop\\django+scrapy\\django_myblog')
+sys.path.append('...')
 
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'myblog.settings'
@@ -116,7 +116,7 @@ ITEM_PIPELINES = {
 }
 MYSQL_HOST = 'localhost'
 MYSQL_USER = 'root'
-MYSQL_PASSWORD = 'rnrals9795'
+MYSQL_PASSWORD = '*******'
 MYSQL_DATABASE = 'django'
 MYSQL_PORT = 3306
 MYSQL_CHARSET = 'utf8'

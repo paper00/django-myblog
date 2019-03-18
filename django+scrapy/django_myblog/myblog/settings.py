@@ -13,14 +13,14 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.abspath("C:\\Users\\apple\\Desktop\\django+scrapy")
+BASE_DIR = os.path.abspath("...")
 os.path.join(BASE_DIR, "scrapy_hfut")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '*q51cjbydjvvwr)cy!_em$*!b&=c=)%io*huf6=t04i%u62llk'
+SECRET_KEY = '*******'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'mdeditor',
 ]
 
-BASE_DIR = os.path.abspath("C:\\Users\\apple\\Desktop\\django+scrapy\\django_myblog")
+BASE_DIR = os.path.abspath("...")
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 MEDIA_URL = '/media/'
 
@@ -84,7 +84,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'django',
         'USER': 'root',
-        'PASSWORD': 'rnrals9795',
+        'PASSWORD': '*******',
         'HOST': 'localhost',
         'PORT': '3306',
     }
